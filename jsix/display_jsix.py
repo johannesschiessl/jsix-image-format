@@ -1,9 +1,10 @@
 import sys
 import os
 import pygame
-from jsix.main import JSIXImageFormat
+from jsix_format.main import JSIXImageFormat
 
 def suppress_pygame_warnings():
+    # Suppress Pygame's startup message
     sys.stdout = open(os.devnull, 'w')
     pygame.init()
     sys.stdout = sys.__stdout__
