@@ -29,3 +29,10 @@ class JSIXImageFormat:
         width, height = image.size
         pixels = list(image.getdata())
         return JSIXImageFormat(width, height, pixels)
+
+    @staticmethod
+    def png_to_jsix(png_filename, jsix_filename):
+
+        jsix_image = JSIXImageFormat.from_png(png_filename)
+
+        jsix_image.save(jsix_filename)
