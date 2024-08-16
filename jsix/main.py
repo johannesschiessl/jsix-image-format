@@ -1,3 +1,4 @@
+from PIL import Image
 from .header import write_header, read_header
 from .pixel_data import write_pixels, read_pixels
 
@@ -19,4 +20,12 @@ class JSIXImageFormat:
         with open(filename, 'r') as f:
             magic_number, width, height, pixel_depth = read_header(f)
             pixels = read_pixels(f, width, height, pixel_depth)
+        return JSIXImageFormat(width, height, pixels)
+
+    @staticmethod
+    def from_png(png_filename):
+        image = Image.open(png_filename)
+        image = image.convert("RGB")
+        width, height = image.size
+        pixels = list(image.getdata())
         return JSIXImageFormat(width, height, pixels)
